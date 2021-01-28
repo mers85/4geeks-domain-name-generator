@@ -12,7 +12,7 @@ const publicUrl = `${port}-${host}`
 
 module.exports = {
   mode: 'development',
-  entry: ['./src/main.js'],
+  entry: ['./src/app.js'],
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'main.bundle.js',
