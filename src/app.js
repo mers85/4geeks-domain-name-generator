@@ -5,11 +5,12 @@ import "./style.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
-function allPossibleDomains() {
-  let pronouns = ["the", "our", "last"];
-  let adjs = ["great", "big", "of"];
-  let nouns = ["jogger", "racoon", "us"];
-  let extensions = [".com", ".net", ".us", ".io", ".eo", ".eu", ".es"];
+let pronouns = ["the", "our"];
+let adjs = ["great", "big", "lastof"];
+let nouns = ["jogger", "racoon", "us", "testeo", "internet", "mastercoach"];
+let extensions = [".com", ".net", ".us", ".io", ".eo", ".eu", ".es", ".coach"];
+
+function allPossibleDomains(pronouns, adjs, nouns, extensions) {
   let domains = [];
 
   for (let i = 0; i < pronouns.length; i++) {
@@ -20,12 +21,12 @@ function allPossibleDomains() {
         let noun = nouns[y];
         for (let z = 0; z < extensions.length; z++) {
           let extension = extensions[z];
-          if (extension.includes(noun)) {
-            //console.log(pronoun + adj + extension);
-            domains.push(pronoun + adj + extension);
+          let extensionLength = extension.slice(1).length;
+          if (extension.includes(noun.slice(-extensionLength))) {
+            let nounWithOutExtension = noun.slice(0, -extensionLength);
+            domains.push(pronoun + adj + nounWithOutExtension + extension);
           } else {
-            //console.log(pronoun + adj + noun + extension);
-            domains.push(pronoun + adj + extension);
+            domains.push(pronoun + adj + noun + extension);
           }
         }
       }
@@ -48,7 +49,9 @@ window.onload = function() {
   let selectElement = document.querySelector("#inputGroupSelectdomain");
   document.getElementById(
     "inputGroupSelectdomain"
-  ).innerHTML = addLiListToDomains(allPossibleDomains());
+  ).innerHTML = addLiListToDomains(
+    allPossibleDomains(pronouns, adjs, nouns, extensions)
+  );
 
   selectElement.addEventListener("change", event => {
     let result = document.querySelector("#domainSelected");
