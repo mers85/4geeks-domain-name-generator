@@ -10,7 +10,12 @@ let adjs = ["great", "big", "lastof"];
 let nouns = ["jogger", "racoon", "us", "testeo", "internet", "mastercoach"];
 let extensions = [".com", ".net", ".us", ".io", ".eo", ".eu", ".es", ".coach"];
 
-function allPossibleDomains(pronouns, adjs, nouns, extensions) {
+function allPossibleDomains(
+  pronouns = ["the"],
+  adjs = ["lastof"],
+  nouns = ["us"],
+  extensions = [".us"]
+) {
   let domains = [];
 
   for (let i = 0; i < pronouns.length; i++) {
