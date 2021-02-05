@@ -5,12 +5,29 @@ import "./style.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
+window.onload = function() {
+  let selectElement = document.querySelector("#inputGroupSelectdomain");
+  document.getElementById(
+    "inputGroupSelectdomain"
+  ).innerHTML = addLiListToDomains(
+    getAllPossibleDomainsHTML(pronouns, adjs, nouns, extensions)
+  );
+
+  selectElement.addEventListener("change", event => {
+    let result = document.querySelector("#domainSelected");
+    result.textContent = `You selected domain: ${event.target.value}`;
+
+    let buyDomain = document.querySelector("#buyDomain");
+    buyDomain.classList.remove("d-none");
+  });
+};
+
 let pronouns = ["the", "our"];
 let adjs = ["great", "big", "lastof"];
 let nouns = ["jogger", "racoon", "us", "testeo", "internet", "mastercoach"];
 let extensions = [".com", ".net", ".us", ".io", ".eo", ".eu", ".es", ".coach"];
 
-function allPossibleDomains(
+function getAllPossibleDomainsHTML(
   pronouns = ["the"],
   adjs = ["lastof"],
   nouns = ["us"],
@@ -49,20 +66,3 @@ function addLiListToDomains(arr) {
   }
   return elements;
 }
-
-window.onload = function() {
-  let selectElement = document.querySelector("#inputGroupSelectdomain");
-  document.getElementById(
-    "inputGroupSelectdomain"
-  ).innerHTML = addLiListToDomains(
-    allPossibleDomains(pronouns, adjs, nouns, extensions)
-  );
-
-  selectElement.addEventListener("change", event => {
-    let result = document.querySelector("#domainSelected");
-    result.textContent = `You selected domain: ${event.target.value}`;
-
-    let buyDomain = document.querySelector("#buyDomain");
-    buyDomain.classList.remove("d-none");
-  });
-};
